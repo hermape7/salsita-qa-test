@@ -69,6 +69,18 @@ class BasePage:
         Click on element with expected condition syntax. Returns true if it is possible to click on the element.
 
         :param locator: tuple
-        :return: True
+        :return: Boolean
         """
         return self.wait.until(lambda x: self.ec.element_to_be_clickable(self.get_element(locator)))
+
+    def is_element_displayed(self, locator, delay=5):
+        """
+        Click on element with expected condition syntax. Returns true if element is displayed.
+        Possible to change delay for waiting to display the element. Default is 5s.
+
+        :param locator: tuple
+        :param delay: int
+        :return: Boolean
+        """
+        return WebDriverWait(self.driver, delay).until(
+            lambda x: self.get_element(locator).is_displayed())

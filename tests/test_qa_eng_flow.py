@@ -31,13 +31,19 @@ class TestQaEngFlow(unittest.TestCase):
         # proceed to lists page
         lists_page = code_page.click_submit_btn()
 
+        # Check quotes headlines and each quote in particular list
         assert lists_page.check_quotes() is True
-        assert len(
-            lists_page.get_awesome_quotes_list()) == 5, 'There is a bad value ({}) of quotes in awesome list. It should be 5'.format(
-            lists_page.get_awesome_quotes_list())
-        assert len(
-            lists_page.get_famous_quotes_list()) == 5, 'There is a bad value ({}) of quotes in famous list. It should be 5'.format(
-            lists_page.get_famous_quotes_list())
+
+        # Checks number of quotes
+        awesome_list_len = len(lists_page.get_awesome_quotes_list())
+        assert awesome_list_len == 5, 'There is a bad value ({}) of quotes in awesome list. It should be 5'.format(
+            awesome_list_len)
+        print('Number of total quotes in awesome quote list is {}'.format(awesome_list_len))
+
+        famous_list_len = len(lists_page.get_famous_quotes_list())
+        assert famous_list_len == 5, 'There is a bad value ({}) of quotes in famous list. It should be 5'.format(
+            famous_list_len)
+        print('Number of total quotes in famous quote list is {}'.format(famous_list_len))
 
         # get total score from quotes
         total_score_from_quotes = lists_page.get_score_from_all_quotes()

@@ -41,6 +41,7 @@ class ListsPage(BasePage):
     def _check_awesome_quotes(self, index):
         self.awesome_quotes_list = self.get_elements_list(ListsPageLocators.get_quote_list(index))
         for quote in self.awesome_quotes_list:
+            assert quote.is_displayed() is True, 'Quote "{}" is not displayed.'.format(quote)
             assert quote.text[
                    :-4].strip() in constants.AWESOME_QUOTES_LIST, 'Quote "{}" is not in awesome list.'.format(
                 quote.text[:-4].strip())
@@ -49,6 +50,7 @@ class ListsPage(BasePage):
     def _check_famous_quotes(self, index):
         self.famous_quote_list = self.get_elements_list(ListsPageLocators.get_quote_list(index))
         for quote in self.famous_quote_list:
+            assert quote.is_displayed() is True, 'Quote "{}" is not displayed.'.format(quote)
             assert quote.text[:-4].strip() in constants.FAMOUS_QUOTES_LIST, 'Quote "{}" is not famous in list.'.format(
                 quote.text[:-4].strip())
         return True
